@@ -42,6 +42,7 @@ class CameraMlVision<T> extends StatefulWidget {
   final WidgetBuilder overlayBuilder;
   final CameraLensDirection cameraLensDirection;
   final ResolutionPreset resolution;
+  final FlashMode flashMode;
   final Function onDispose;
 
   CameraMlVision({
@@ -53,6 +54,7 @@ class CameraMlVision<T> extends StatefulWidget {
     this.overlayBuilder,
     this.cameraLensDirection = CameraLensDirection.back,
     this.resolution,
+    this.flashMode,
     this.onDispose,
   }) : super(key: key);
 
@@ -82,6 +84,9 @@ class CameraMlVisionState<T> extends State<CameraMlVision<T>>
   @override
   void didUpdateWidget(CameraMlVision<T> oldWidget) {
     if (oldWidget.resolution != widget.resolution) {
+      _initialize();
+    }
+    if (oldWidget.flashMode != widget.flashMode) {
       _initialize();
     }
     super.didUpdateWidget(oldWidget);
@@ -205,6 +210,7 @@ class CameraMlVisionState<T> extends State<CameraMlVision<T>>
       description,
       widget.resolution ?? ResolutionPreset.high,
       enableAudio: false,
+      flashMode: widget.flashMode,
     );
     if (!mounted) {
       return;
