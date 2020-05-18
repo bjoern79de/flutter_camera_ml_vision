@@ -19,7 +19,11 @@ dependencies:
   path_provider: ^1.6.0
   pedantic: ^1.8.0+1
   device_info: ^0.4.1+4
-  camera: ^0.5.7+3
+  camera:
+    git:
+      url: git://github.com/NeKoFu/plugins.git
+      path: packages/camera
+      ref: camera_torch
 
 dev_dependencies:
   flutter_test:
